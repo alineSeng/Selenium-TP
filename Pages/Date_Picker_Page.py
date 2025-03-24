@@ -3,6 +3,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import Select
 
 class Date_Picker_Page:
     def __init__(self, driver, wait):
@@ -21,7 +22,8 @@ class Date_Picker_Page:
         self.select_date_field = (By.ID, "datePickerMonthYearInput")
         self.date_and_time_field = (By.ID, "dateAndTimePickerInput")
         self.select_month = (By.CSS_SELECTOR, ".react-datepicker__month-read-view--down-arrow")
-        self.november = (By.CSS_SELECTOR, ".react-datepicker__month-option:nth-child(11)")
+        #self.november = (By.CSS_SELECTOR, ".react-datepicker__month-option:nth-child(11)")
+        self.november = (By.XPATH, "//div[normalize-space()='November']")
         self.select_year = (By.CSS_SELECTOR, ".react-datepicker__year-read-view")
         self.year_2035 = (By.CSS_SELECTOR, ".react-datepicker__year-option:nth-child(4)")
         self.select_day_05 = (By.CSS_SELECTOR, ".react-datepicker__day--005")
@@ -45,16 +47,10 @@ class Date_Picker_Page:
     def select_date_and_time(self):
         self.wait.until(EC.element_to_be_clickable(self.date_and_time_field)).click()
         self.wait.until(EC.element_to_be_clickable(self.select_month)).click()
-        # Faire défiler la page jusqu'à l'élément novembre
-        element = self.wait.until(EC.visibility_of_element_located(self.november))
+        self.wait.until(EC.element_to_be_clickable(self.november)).click()
+        self.wait.until(EC.element_to_be_clickable(self.select_year)).click()
+        self.wait.until(EC.element_to_be_clickable(self.year_2035)).click()
+        self.wait.until(EC.element_to_be_clickable(self.select_day_05)).click()
+        self.wait.until(EC.element_to_be_clickable(self.select_time_23_45)).click()
     
-        # Utiliser ActionChains pour faire défiler l'élément dans la vue
-        ActionChains(self.driver).move_to_element(element).perform()
-
-        # Maintenant, clique sur l'élément
-        element.click()
-        # self.wait.until(EC.element_to_be_clickable(self.select_year)).click()
-        # self.wait.until(EC.element_to_be_clickable(self.year_2035)).click() 
-        # self.wait.until(EC.element_to_be_clickable(self.select_day_05)).click()
-        # self.wait.until(EC.element_to_be_clickable(self.select_time_23_45)).click()
-  
+    

@@ -19,7 +19,7 @@ class Home_Page:
 
         self.elements_menu = (By.CSS_SELECTOR, ".card:nth-child(1) h5")
         self.forms_menu = (By.CSS_SELECTOR, ".card:nth-child(2) svg")
-        self.alerts_frame_windows_menu = (By.CSS_SELECTOR, ".card:nth-child(3) path")
+        self.alerts_frame_windows_menu = (By.XPATH, "//body/div[@id='app']/div[@class='body-height']/div[@class='home-content']/div[@class='home-body']/div[@class='category-cards']/div[3]/div[1]")
         self.widgets_menu = (By.CSS_SELECTOR, ".card:nth-child(4) h5")
         self.interactions_menu = (By.CSS_SELECTOR, ".card:nth-child(5) h5")
         self.book_store_application_menu = (By.CSS_SELECTOR, ".card:nth-child(6) svg")
